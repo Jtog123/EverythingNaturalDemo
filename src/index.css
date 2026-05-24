@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+@custom-variant dark (&:is(.dark *));
+
+@plugin "tailwindcss-animate";
+
+
+html, body, #root {
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
