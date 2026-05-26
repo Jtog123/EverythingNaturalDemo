@@ -11,21 +11,21 @@ const products = [
   {
     icon: "🛒",
     title: "Groceries",
-    description: "We pride ourselves on stocking our shelves with the highest quality produce, speciality goods, pantry items, meat and dairy products. We source as much of our products as possible from local and regional farms, including Swiss Villa in Washington Boro to Endless Roots Farm in Waverly Twp..",
+    description: "100% organic produce, specialty goods, and wholesome pantry staples sourced from trusted farms and suppliers.",
     hueA: 120,
     hueB: 160,
   },
   {
     icon: "💊",
     title: "Supplements",
-    description: "Our supplements are rigorously third-party tested for purity and potency. Whether shopping with our private label or one of the numerous major brands we carry, you’ll experience the most robust selection of quality herbs, vitamins, minerals, homeopathic remedies, CBD and clean protein powders in the region. We’re your one-stop-shop for reaching your health and wellness goals.",
+    description: "A curated selection of high-quality vitamins, herbs, and wellness supplements to support every aspect of your health.",
     hueA: 150,
     hueB: 200,
   },
   {
     icon: "🎁",
     title: "Gifts",
-    description: "Committed to living the best quality of life, we also offer an assortment of unique and thoughtful gifts through our retail section. Check out our selection of home and garden items, natural and organic personal care products, stylish apparel and spiritual and wellness gifts, including crystals and essential oils. Find the perfect present for any holiday or peruse our large selection of children's toys, games, and clothes.",
+    description: "Thoughtfully selected natural gift sets, wellness bundles, and unique finds for the health-conscious people in your life.",
     hueA: 90,
     hueB: 140,
   },
@@ -70,11 +70,11 @@ function ProductCard({ product, i }: { product: typeof products[0]; i: number })
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const heroRef = useRef<HTMLElement | null>(null);
-  const whoRef = useRef<HTMLElement | null>(null);
-  const productsRef = useRef<HTMLElement | null>(null);
+  const heroRef = useRef(null);
+  const whoRef = useRef<HTMLElement>(null);
+  const productsRef = useRef<HTMLElement>(null);
 
-  const scrollTo = (ref: React.RefObject<HTMLElement> | null) => {
+  const scrollTo = (ref: React.RefObject<HTMLElement>) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -100,7 +100,7 @@ function App() {
     <div className="bg-black">
 
       {/* ── HERO SECTION ── */}
-      <section ref={heroRef} className="relative h-screen w-full overflow-hidden">
+      <div ref={heroRef} className="relative h-screen w-full overflow-hidden">
         <nav className="absolute top-0 left-0 right-0 z-30 px-5 sm:px-8 py-4 sm:py-5 flex items-center justify-between">
           <div>
             <img src={logo} alt="Everything Natural" className="h-28 w-auto" />
@@ -167,7 +167,9 @@ function App() {
 
         <video className="absolute top-0 left-0 w-full h-full object-cover scale-105" src={PlantHero} autoPlay muted loop playsInline />
 
-
+        {/* Gradients sit under the texture */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 via-70% to-green-950/70" />
+        <div className="absolute inset-0 bg-green-900/10 mix-blend-soft-light" />
 
         {/* Parchment texture — above gradients so it's visible */}
         <div
@@ -176,13 +178,10 @@ function App() {
             backgroundImage: `url(${parchmentTexture})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            mixBlendMode: "hard-light",
-            opacity: 0.225,
+            mixBlendMode: "soft-light",
+            opacity: 0.5,
           }}
         />
-        {/* Gradients sit under the texture */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 via-70% to-green-950/50" />
-        <div className="absolute inset-0 bg-green-900/10 mix-blend-soft-light" />
 
         <motion.div style={{ top: "25%", opacity: heroOpacity, y: heroY }} className="absolute z-20 w-full text-center px-6">
           <h1 className="text-white text-4xl sm:text-5xl md:text-7xl font-[Playfair_Display] tracking-wide pb-4">
@@ -221,10 +220,10 @@ function App() {
           <span className="text-white/50 text-xs tracking-widest uppercase">Scroll</span>
           <div className="w-[1px] h-8 bg-gradient-to-b from-white/40 to-transparent" />
         </motion.div>
-      </section>
+      </div>
 
       {/* ── WHO WE ARE SECTION ── */}
-      <section ref={whoRef} className="relative min-h-screen bg-stone-950 flex items-center px-8 md:px-20 py-24 overflow-hidden">
+      <div ref={whoRef} className="relative min-h-screen bg-stone-950 flex items-center px-8 md:px-20 py-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-green-900/50 via-green-950/20 to-stone-950 pointer-events-none" />
         <div className="relative z-10 max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-16 items-center">
           <motion.div style={{ x: imgX, opacity: imgOpacity }} className="rounded-2xl overflow-hidden shadow-2xl shadow-green-950/60">
@@ -237,7 +236,7 @@ function App() {
               We are a family-owned and operated health food store that has been serving the Clarks Summit, PA community natural and organic food since 1985. We offer 100% organic produce, a wide range of specialty goods, and a large selection of high-quality herbs, vitamins and supplements.
             </p>
             <p className="text-stone-400 text-base leading-relaxed">
-              Our commitment has never wavered to bring you the highest quality products, and a welcoming space where your health always comes first.
+              Our commitment has never wavered — to bring you the highest quality products, and a welcoming space where your health always comes first.
             </p>
             <motion.button
               whileHover={{ scale: 1.06, boxShadow: "0 0 24px rgba(134,239,172,0.35)" }}
@@ -249,10 +248,10 @@ function App() {
             </motion.button>
           </motion.div>
         </div>
-      </section>
+      </div>
 
       {/* ── PRODUCTS SECTION ── */}
-      <section ref={productsRef} className="relative bg-stone-950 px-8 md:px-20 py-24 overflow-hidden">
+      <div ref={productsRef} className="relative bg-stone-950 px-8 md:px-20 py-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-stone-950 via-green-950/10 to-stone-950 pointer-events-none" />
         <div className="relative z-10 max-w-6xl mx-auto">
           <motion.div
@@ -289,7 +288,7 @@ function App() {
             </motion.button>
           </motion.div>
         </div>
-      </section>
+      </div>
 
     </div>
   );
