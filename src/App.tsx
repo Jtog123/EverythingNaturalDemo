@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import PlantHero from "./assets/PlantHero.mp4";
 import logo from "./assets/logo.png";
 import family from "./assets/family.png";
+import parchmentTexture from "./assets/parchment1.jpg";
 
 const navLinks = ["Contact Us", "Blog", "The Flow Space"];
 
@@ -10,21 +11,21 @@ const products = [
   {
     icon: "🛒",
     title: "Groceries",
-    description: "100% organic produce, specialty goods, and wholesome pantry staples sourced from trusted farms and suppliers.",
+    description: "We pride ourselves on stocking our shelves with the highest quality produce, speciality goods, pantry items, meat and dairy products. We source as much of our products as possible from local and regional farms, including Swiss Villa in Washington Boro to Endless Roots Farm in Waverly Twp..",
     hueA: 120,
     hueB: 160,
   },
   {
     icon: "💊",
     title: "Supplements",
-    description: "A curated selection of high-quality vitamins, herbs, and wellness supplements to support every aspect of your health.",
+    description: "Our supplements are rigorously third-party tested for purity and potency. Whether shopping with our private label or one of the numerous major brands we carry, you’ll experience the most robust selection of quality herbs, vitamins, minerals, homeopathic remedies, CBD and clean protein powders in the region. We’re your one-stop-shop for reaching your health and wellness goals.",
     hueA: 150,
     hueB: 200,
   },
   {
     icon: "🎁",
     title: "Gifts",
-    description: "Thoughtfully selected natural gift sets, wellness bundles, and unique finds for the health-conscious people in your life.",
+    description: "Committed to living the best quality of life, we also offer an assortment of unique and thoughtful gifts through our retail section. Check out our selection of home and garden items, natural and organic personal care products, stylish apparel and spiritual and wellness gifts, including crystals and essential oils. Find the perfect present for any holiday or peruse our large selection of children's toys, games, and clothes.",
     hueA: 90,
     hueB: 140,
   },
@@ -36,7 +37,7 @@ function ProductCard({ product, i }: { product: typeof products[0]; i: number })
       initial={{ y: 120, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ type: "spring", bounce: 0.4, duration: 0.9, delay: i * 0.15 }}
+      transition={{ type: "spring", bounce: 0.4, duration: 0.9, delay: i * 0.35 }}
       whileHover={{ y: -8, boxShadow: "0 24px 48px rgba(0,0,0,0.4), 0 0 24px rgba(74,140,92,0.2)" }}
       className="relative flex flex-col items-center text-center bg-stone-900 border border-green-900/40 rounded-2xl px-8 py-10 cursor-default overflow-hidden"
     >
@@ -70,10 +71,10 @@ function ProductCard({ product, i }: { product: typeof products[0]; i: number })
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const heroRef = useRef(null);
-  const whoRef = useRef<HTMLElement>(null);
-  const productsRef = useRef<HTMLElement>(null);
+  const whoRef = useRef<HTMLElement | null>(null);
+  const productsRef = useRef<HTMLElement | null>(null);
 
-  const scrollTo = (ref: React.RefObject<HTMLElement>) => {
+  const scrollTo = (ref: React.RefObject<HTMLElement> | null) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -165,10 +166,25 @@ function App() {
         </AnimatePresence>
 
         <video className="absolute top-0 left-0 w-full h-full object-cover scale-105" src={PlantHero} autoPlay muted loop playsInline />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 via-70% to-green-950/70" />
+
+
+
+        {/* Parchment texture — above gradients so it's visible */}
+        <div
+          className="absolute inset-0 pointer-events-none z-10"
+          style={{
+            backgroundImage: `url(${parchmentTexture})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            mixBlendMode: "hard-light",
+            opacity: 0.225,
+          }}
+        />
+        {/* Gradients sit under the texture */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 via-70% to-green-950/50" />
         <div className="absolute inset-0 bg-green-900/10 mix-blend-soft-light" />
 
-        <motion.div style={{ top: "25%", opacity: heroOpacity, y: heroY }} className="absolute z-10 w-full text-center px-6">
+        <motion.div style={{ top: "25%", opacity: heroOpacity, y: heroY }} className="absolute z-20 w-full text-center px-6">
           <h1 className="text-white text-4xl sm:text-5xl md:text-7xl font-[Playfair_Display] tracking-wide pb-4">
             Mission Statement
           </h1>
@@ -256,7 +272,6 @@ function App() {
             ))}
           </div>
 
-          {/* Single CTA below all cards */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -273,7 +288,6 @@ function App() {
               View All Products →
             </motion.button>
           </motion.div>
-
         </div>
       </section>
 
