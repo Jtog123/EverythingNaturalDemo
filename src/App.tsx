@@ -74,7 +74,7 @@ function App() {
   const whoRef = useRef<HTMLElement >(null);
   const productsRef = useRef<HTMLElement>(null);
 
-  const scrollTo = (ref: React.RefObject<HTMLElement>) => {
+  const scrollTo = (ref: React.RefObject<HTMLElement> | null) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   };
 
