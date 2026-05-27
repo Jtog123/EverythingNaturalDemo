@@ -70,9 +70,9 @@ function ProductCard({ product, i }: { product: typeof products[0]; i: number })
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const heroRef = useRef(null);
-  const whoRef = useRef<HTMLElement>(null);
-  const productsRef = useRef<HTMLElement>(null);
+  const heroRef = useRef(null)!;
+  const whoRef = useRef<HTMLElement>(null)!;
+  const productsRef = useRef<HTMLElement>(null)!;
 
   const scrollTo = (ref: React.RefObject<HTMLElement>) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
