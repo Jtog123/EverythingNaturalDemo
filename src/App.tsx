@@ -237,7 +237,7 @@ function App() {
               We are a family-owned and operated health food store that has been serving the Clarks Summit, PA community natural and organic food since 1985. We offer 100% organic produce, a wide range of specialty goods, and a large selection of high-quality herbs, vitamins and supplements.
             </p>
             <p className="text-stone-400 text-base leading-relaxed">
-              Our commitment has never wavered — to bring you the highest quality products, and a welcoming space where your health always comes first.
+              Our commitment has never wavered to bring you the highest quality products, and a welcoming space where your health always comes first.
             </p>
             <motion.button
               whileHover={{ scale: 1.06, boxShadow: "0 0 24px rgba(134,239,172,0.35)" }}
