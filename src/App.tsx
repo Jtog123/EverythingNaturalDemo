@@ -223,7 +223,7 @@ function App() {
       </div>
 
       {/* ── WHO WE ARE SECTION ── */}
-      <div ref={whoRef} className="relative min-h-screen bg-stone-950 flex items-center px-8 md:px-20 py-24 overflow-hidden">
+      <section ref={whoRef} className="relative min-h-screen bg-stone-950 flex items-center px-8 md:px-20 py-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-green-900/50 via-green-950/20 to-stone-950 pointer-events-none" />
         <div className="relative z-10 max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-16 items-center">
           <motion.div style={{ x: imgX, opacity: imgOpacity }} className="rounded-2xl overflow-hidden shadow-2xl shadow-green-950/60">
@@ -248,10 +248,10 @@ function App() {
             </motion.button>
           </motion.div>
         </div>
-      </div>
+      </section>
 
       {/* ── PRODUCTS SECTION ── */}
-      <div ref={productsRef} className="relative bg-stone-950 px-8 md:px-20 py-24 overflow-hidden">
+      <section ref={productsRef} className="relative bg-stone-950 px-8 md:px-20 py-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-stone-950 via-green-950/10 to-stone-950 pointer-events-none" />
         <div className="relative z-10 max-w-6xl mx-auto">
           <motion.div
@@ -288,7 +288,7 @@ function App() {
             </motion.button>
           </motion.div>
         </div>
-      </div>
+      </section>
 
     </div>
   );
